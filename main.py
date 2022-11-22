@@ -51,19 +51,23 @@ def add_column(df, new_column_name):
     df.rename(columns={'new': new_column_name}, inplace=True)
     return df
 
-# add a button that calls the function and takes in the dataframe and the new column name
-if st.button('Add Column'):
-    add_column(df, new_column_name)
+# display the new dataframe
+st.write(add_column(df, new_column_name))
 
-# return a unique list of the new column
-def unique_list(df, new_column_name):
-    unique_list = []
-    for i in df[new_column_name]:
-        if i not in unique_list:
-            unique_list.append(i)
-    return unique_list
-
-# display the unique list of the new column as a bar chart
-if st.button('Display Unique List'):
-    st.bar_chart(unique_list(df, new_column_name))
+# save the new dataframe as a csv file
+df.to_csv('new.csv')
+# import libraries to get the file
+import base64
+def get_table_download_link(df):
+    """Generates a link allowing the data in a given panda dataframe to be downloaded
+    in:  dataframe
+    out: href string
+    """
+    csv = df.to_csv(index=False)
+    b64 = base64.b64encode(
+        csv.encode()
+    ).decode()  # some strings <-> bytes conversions necessary here
+    return f'<a href="data:file/csv;base64,{b64}" download="myfilename.csv">Download csv file</a>'
+# download the new csv file
+st.markdown(get_table_download_link(df), unsafe_allow_html=True)
 
