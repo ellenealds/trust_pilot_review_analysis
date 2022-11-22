@@ -25,7 +25,8 @@ new_column_name = st.text_input("Enter a new column name")
 def add_column(df, new_column_name):
     response = []
     for i in df['data']:
-        prompt = f'Review: '+ {i} + user_input
+        temp = 'Review: ' + i
+        prompt = temp + user_input
         response1 = co.generate(
         model='xlarge',
         prompt=prompt,
@@ -55,3 +56,4 @@ def unique_list(df, new_column_name):
 # display the unique list of the new column as a bar chart
 if st.button('Display Unique List'):
     st.bar_chart(unique_list(df, new_column_name))
+
