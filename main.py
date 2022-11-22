@@ -8,6 +8,8 @@ import pandas as pd
 # import csv file
 df = pd.read_csv('fedex_reviews.csv')
 
-# display the data in a table
+# display the data in a table contained in a 
 st.write(df)
 
+# add an input box for the user to enter a string, display this as prompt and provide a description
+input_string = st.text_input('Enter a string', 'Type Here')
