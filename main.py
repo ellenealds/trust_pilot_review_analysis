@@ -1,6 +1,6 @@
 # this is a streamlit app that takes in a csv file and displays the data in a table, 
 # a large language model function is called on each row and generates a new column with the output of the function
-
+!pip install cohere
 import streamlit as st
 import pandas as pd
 import cohere
