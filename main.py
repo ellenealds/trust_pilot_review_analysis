@@ -38,4 +38,20 @@ def add_column(df, new_column_name):
         stop_sequences=["--"],
         return_likelihoods='NONE')
         response.append(response1.generations[0].text)
-    df['new_column_name'] = response
+    df[new_column_name] = response
+
+# add a button that calls the function and takes in the dataframe and the new column name
+if st.button('Add Column'):
+    add_column(df, new_column_name)
+
+# return a unique list of the new column
+def unique_list(df, new_column_name):
+    unique_list = []
+    for i in df[new_column_name]:
+        if i not in unique_list:
+            unique_list.append(i)
+    return unique_list
+
+# display the unique list of the new column as a bar chart
+if st.button('Display Unique List'):
+    st.bar_chart(unique_list(df, new_column_name))
