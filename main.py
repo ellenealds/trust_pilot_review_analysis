@@ -28,4 +28,14 @@ if uploaded_file is not None:
 
     # display the dataframe into a table with filter and sort options
     st.write(data.output)
-    
+
+# import csv file
+df = pd.read_csv('fedex_reviews.csv')
+
+# if no file is uploaded, add a button to use sample data
+if uploaded_file is None:
+    if st.button('Use sample data'):
+        uploaded_file = df
+
+# create an instance of the Data class
+data = Data(df)
