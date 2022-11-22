@@ -6,13 +6,8 @@ import pandas as pd
 
 # the user can either upload their own file in the format of a csv containing one column called data or they can use the sample data
 # import csv file
+df = pd.read_csv('fedex_reviews.csv')
 
-# upload the csv file
-uploaded_file = st.file_uploader("Choose a CSV file", type="csv")
-if uploaded_file is not None:
-    df = pd.read_csv('fedex_reviews.csv')
-else :
-    df = uploaded_file
-    
-    st.write(df)
+# display the data in a table
+st.write(df)
 
