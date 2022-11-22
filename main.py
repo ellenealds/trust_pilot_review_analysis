@@ -24,7 +24,12 @@ new_column_name = st.text_input("Enter a new column name")
 
 def add_column(df, new_column_name):
     response = []
+    # add a counter that will be used to display the progress of the function
+    counter = 0
+    # count the number of rows in the dataframe
+    total_rows = len(df.index)
     for i in df['data']:
+        
         temp = 'Review: ' + i
         prompt = temp + user_input
         response1 = co.generate(
@@ -39,7 +44,12 @@ def add_column(df, new_column_name):
         stop_sequences=["--"],
         return_likelihoods='NONE')
         response.append(response1.generations[0].text)
-    df[new_column_name] = response
+        counter += 1
+        st.write(counter, 'of', total_rows, 'rows completed')
+    df['new'] = response
+    # rename the new column
+    df.rename(columns={'new': new_column_name}, inplace=True)
+    return df
 
 # add a button that calls the function and takes in the dataframe and the new column name
 if st.button('Add Column'):
