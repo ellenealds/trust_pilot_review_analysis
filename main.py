@@ -39,3 +39,7 @@ if uploaded_file is None:
 
 # create an instance of the Data class
 data = Data(df)
+
+#display the dataframe into a table with filter and sort options
+st.write(data.output)
+
