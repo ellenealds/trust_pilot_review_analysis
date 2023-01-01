@@ -6,7 +6,7 @@ import pandas as pd
 import cohere
 
 # create a function that saves the model
-co = cohere.Client('b55ru767vjHE7IuQ0aaqQx9rIO3g7CN0zquVnEZY')
+co = cohere.Client('x')
 
 # the user can either upload their own file in the format of a csv containing one column called data or they can use the sample data
 # import csv file
